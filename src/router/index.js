@@ -14,7 +14,7 @@ const routes = [
   {
     path: '/user',
     // component: { render: h => h('router-view') }, // 使用函数式的方式提供占位符
-    hideInMenu: true,
+    hideInMenu: true, // 用来配合生成菜单信息的
     component: () =>
       import(/* webpackChunkName: "layout" */ '../layouts/UserLayout.vue'),
     children: [
@@ -23,13 +23,13 @@ const routes = [
         redirect: '/user/login',
       },
       {
-        path: 'login',
+        path: '/user/login',
         name: 'login',
         component: () =>
           import(/* webpackChunkName: "user" */ '../views/User/Login'),
       },
       {
-        path: 'register',
+        path: '/user/register',
         name: 'register',
         component: () =>
           import(/* webpackChunkName: "user" */ '../views/User/Register'),
@@ -57,7 +57,7 @@ const routes = [
         component: { render: h => h('router-view') },
         children: [
           {
-            path: 'analysis',
+            path: '/dashboard/analysis',
             name: 'analysis',
             meta: { title: '分析页' },
             component: () =>
@@ -69,7 +69,7 @@ const routes = [
       },
       // form
       {
-        path: 'form',
+        path: '/form',
         name: 'form',
         meta: {
           icon: 'form',
@@ -82,7 +82,7 @@ const routes = [
             redirect: '/form/basic-form',
           },
           {
-            path: 'basic-form',
+            path: '/form/basic-form',
             name: 'basicform',
             meta: { title: '基础表单' },
             component: () =>
@@ -91,7 +91,7 @@ const routes = [
               ),
           },
           {
-            path: 'step-form',
+            path: '/form/step-form',
             name: 'stepform',
             hideChildrenInMenu: true,
             meta: { title: '分布表单' },
@@ -103,7 +103,7 @@ const routes = [
                 redirect: '/form/step-form/info',
               },
               {
-                path: 'info',
+                path: '/form/step-form/info',
                 name: 'info',
                 component: () =>
                   import(
@@ -111,7 +111,7 @@ const routes = [
                   ),
               },
               {
-                path: 'confirm',
+                path: '/form/step-form/confirm',
                 name: 'confirm',
                 component: () =>
                   import(
@@ -119,7 +119,7 @@ const routes = [
                   ),
               },
               {
-                path: 'result',
+                path: '/form/step-form/result',
                 name: 'result',
                 component: () =>
                   import(
