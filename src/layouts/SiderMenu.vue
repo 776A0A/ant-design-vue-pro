@@ -27,6 +27,9 @@
    * SubMenu1.vue https://github.com/vueComponent/ant-design-vue/blob/master/components/menu/demo/SubMenu1.vue
    * */
   import SubMenu from './SubMenu';
+
+  import { check } from '../utils/auth';
+
   export default {
     props: {
       theme: {
@@ -62,7 +65,13 @@
       // 通过路由来生成菜单信息
       getMenuData(routes = [], parentKeys = [], selectedKey) {
         const menuData = [];
-        routes.forEach(item => {
+
+        for (const item of routes) {
+          if (item.meta && item.meta.authority && !check(item.meta.authority)) {
+            // 如果当前的权限没有达到要求，则不会在菜单中渲染出该菜单项
+            continue;
+          }
+
           if (item.name && !item.hideInMenu) {
             this.openKeysMap[item.path] = parentKeys;
 
@@ -94,9 +103,9 @@
               ...this.getMenuData(item.children, [...parentKeys, item.path]),
             );
           }
-        });
+        }
 
-        console.log(this.selectedKeysMap, this.openKeysMap);
+        // console.log(this.selectedKeysMap, this.openKeysMap);
         return menuData;
       },
     },
