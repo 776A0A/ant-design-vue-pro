@@ -17,6 +17,7 @@
       <a-layout>
         <a-layout-header style="background: #fff; padding: 0">
           <a-icon
+            v-auth="['admin']"
             class="trigger"
             :type="collapsed ? 'menu-unfold' : 'menu-fold'"
             @click="() => (collapsed = !collapsed)"
@@ -35,6 +36,10 @@
     <Authorized :authority="['admin']">
       <SettingDrawer />
     </Authorized>
+
+    <!-- 因为抽屉组件的定位问题，直接使用 v-auth 会有问题 -->
+    <!-- 如果一定要使用，那么需要 v-auth 指令内代码的配合 -->
+    <!-- <SettingDrawer v-auth="['admin']" /> -->
   </div>
 </template>
 <script>
