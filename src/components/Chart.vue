@@ -1,5 +1,8 @@
 <template>
-  <div ref="chartDom" style="height: 500px;"></div>
+  <!-- style 属性也是从父组件传入的 -->
+  <!-- 但是 style 和 class 的特殊性在于直接写在父组件中就会默认的挂载到子组件的根节点上 -->
+  <!-- 所以就不需要在此用 props 来接收 -->
+  <div ref="chartDom"></div>
 </template>
 <script>
   import echarts from 'echarts';
@@ -7,33 +10,37 @@
   import debounce from 'lodash/debounce';
 
   export default {
+    props: {
+      option: {
+        type: Object,
+        default: () => {},
+      },
+    },
+    watch: {
+      // 监听传入 option 的值变化用以更新视图
+      option(val) {
+        this.chart.setOption(val);
+      },
+      // 深度监听较为耗性能
+      // option: {
+      //   deep: true,
+      //   handler(val) {
+      //     this.chart.setOption(val);
+      //   },
+      // },
+    },
     created() {
       this.resize = debounce(this.resize, 300); // 防抖
     },
     mounted() {
-      // 在初始化时会计算宽度等信息，但此时容器等其他 dom 可能还未渲染完成
-      // 那么就可能出现计算宽度错误等 bug，比如可能会超出视图
-      this.chart = echarts.init(this.$refs.chartDom);
-      // 所以要监听 dom 的 resize事件
+      this.renderChart();
+
+      /**
+       * 在初始化时会计算宽度等信息，但此时容器等其他 dom 可能还未渲染完成
+       * 那么就可能出现计算宽度错误等 bug，比如可能会超出视图
+       * 所以要监听 dom 的 resize事件
+       */
       addListener(this.$refs.chartDom, this.resize);
-      // 绘制图表
-      this.chart.setOption({
-        title: {
-          text: 'ECharts 入门示例',
-        },
-        tooltip: {},
-        xAxis: {
-          data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],
-        },
-        yAxis: {},
-        series: [
-          {
-            name: '销量',
-            type: 'bar',
-            data: [5, 20, 36, 10, 10, 20],
-          },
-        ],
-      });
     },
     beforeDestroy() {
       removeListener(this.$refs.chartDom, this.resize); // 取消监听
@@ -43,6 +50,10 @@
     methods: {
       resize() {
         this.chart.resize();
+      },
+      renderChart() {
+        this.chart = echarts.init(this.$refs.chartDom); // 初始化实例
+        this.chart.setOption(this.option); // 绘制图表
       },
     },
   };
