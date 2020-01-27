@@ -106,7 +106,7 @@ const routes = [
             hideChildrenInMenu: true,
             meta: { title: '分布表单' },
             component: () =>
-              import(/* webpackChunkName: 'form */ '../views/Form/StepForm'),
+              import(/* webpackChunkName: "form" */ '../views/Form/StepForm'),
             children: [
               {
                 path: '/form/step-form',
@@ -125,7 +125,7 @@ const routes = [
                 name: 'confirm',
                 component: () =>
                   import(
-                    /* webpackChunkName: 'form */ '../views/Form/StepForm/Step2'
+                    /* webpackChunkName: "form" */ '../views/Form/StepForm/Step2'
                   ),
               },
               {
@@ -133,7 +133,7 @@ const routes = [
                 name: 'result',
                 component: () =>
                   import(
-                    /* webpackChunkName: 'form */ '../views/Form/StepForm/Step3'
+                    /* webpackChunkName: "form" */ '../views/Form/StepForm/Step3'
                   ),
               },
             ],

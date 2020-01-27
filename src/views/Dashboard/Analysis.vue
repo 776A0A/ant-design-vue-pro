@@ -36,7 +36,7 @@
     methods: {
       getChartData() {
         axios
-          .get('/api/dashboard/chat', { parmas: { ID: 12345 } })
+          .get('/api/dashboard/chart', { params: { ID: 12345 } })
           .then(res => {
             this.chartOption = {
               title: {
