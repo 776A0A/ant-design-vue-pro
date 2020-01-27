@@ -10,9 +10,7 @@
       <a-menu-item
         v-if="!item.children"
         :key="item.path"
-        @click="
-          parent.$router.push({ path: item.path, query: parent.$route.query })
-        "
+        @click.native="navigateTo(item.path)"
       >
         <a-icon v-if="item.meta.icon" :type="item.meta.icon" />
         <span>{{ item.meta.title }}</span>
@@ -24,5 +22,12 @@
 <script>
   export default {
     props: ['menuInfo'],
+    on: {
+      click: function navigateTo(path) {
+        console.log(1);
+        if (parent.$route.path === path) return;
+        parent.$router.push({ path: path, query: parent.$route.query });
+      },
+    },
   };
 </script>

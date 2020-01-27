@@ -31,7 +31,10 @@
         </a-layout-footer>
       </a-layout>
     </a-layout>
-    <SettingDrawer />
+    <!-- 只有 admin 才能设置主题样式 -->
+    <Authorized :authority="['admin']">
+      <SettingDrawer />
+    </Authorized>
   </div>
 </template>
 <script>

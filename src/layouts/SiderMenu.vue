@@ -10,7 +10,7 @@
         <a-menu-item
           v-if="!item.children"
           :key="item.path"
-          @click="$router.push({ path: item.path, query: $route.query })"
+          @click="$router.push({ path: path, query: $route.query })"
         >
           <a-icon v-if="item.meta.icon" :type="item.meta.icon" />
           <span>{{ item.meta.title }}</span>
@@ -59,8 +59,10 @@
       };
     },
     methods: {
-      toggleCollapsed() {
-        this.collapsed = !this.collapsed;
+      navigateTo(path) {
+        console.log(1);
+        if (this.$route.path === path) return;
+        this.$router.push({ path: path, query: this.$route.query });
       },
       // 通过路由来生成菜单信息
       getMenuData(routes = [], parentKeys = [], selectedKey) {
