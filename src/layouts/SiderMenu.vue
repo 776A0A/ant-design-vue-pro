@@ -1,5 +1,6 @@
 <template>
   <div style="width: 256px">
+    <!-- 这里的selectedKes和openKeys是和子组件上的key值相对应的 -->
     <a-menu
       :selectedKeys="selectedKeys"
       :openKeys.sync="openKeys"

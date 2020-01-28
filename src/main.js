@@ -12,11 +12,10 @@ import {
   Form,
   Input,
   Select,
+  LocaleProvider,
+  Dropdown,
+  DatePicker,
 } from 'ant-design-vue';
-
-import Authorized from './components/Authorized';
-
-import Auth from './directives/auth';
 
 // import 'ant-design-vue/dist/antd.less';
 
@@ -29,9 +28,14 @@ Vue.use(Menu);
 Vue.use(Form);
 Vue.use(Input);
 Vue.use(Select);
+Vue.use(LocaleProvider);
+Vue.use(Dropdown);
+Vue.use(DatePicker);
+
+import Authorized from './components/Authorized';
+import Auth from './directives/auth';
 
 Vue.component('Authorized', Authorized);
-
 Vue.use(Auth);
 
 Vue.config.productionTip = false;
