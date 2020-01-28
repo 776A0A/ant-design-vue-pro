@@ -105,7 +105,6 @@
       handleSubmit() {
         this.form.validateFields((err, values) => {
           if (!err) {
-            console.log(values);
             // 成功后直接将值赋值给Vue实例，那么就相当于同步到了this.fieldA和this.fieldB
             // 当表单数据特别多时，这么做就很简便了
             Object.assign(this, values);

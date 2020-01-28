@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   css: {
     loaderOptions: {
@@ -61,5 +63,21 @@ module.exports = {
     // 添加要替换的 loader
     // 这样，在组件中引入的svg文件就可以用组件的形式使用
     svgRule.use('vue-svg-loader').loader('vue-svg-loader');
+  },
+  configureWebpack: {
+    resolve: {
+      plugins: [
+        // Ignore all locale files of moment.js
+        // 忽略掉所有moment里面的语言包，然后在需要的地方手动引入需要的语言包
+        // QUE 不知道为什么会报错
+      ],
+      alias: {
+        // 配置图标的按需加载，参考：https://github.com/HeskeyBaozi/reduce-antd-icons-bundle-demo
+        '@ant-design/icons/lib/dist$': path.resolve(
+          __dirname,
+          './src/icons.js',
+        ),
+      },
+    },
   },
 };

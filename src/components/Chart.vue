@@ -5,7 +5,10 @@
   <div ref="chartDom"></div>
 </template>
 <script>
-  import echarts from 'echarts';
+  import echarts from 'echarts/lib/echarts'; // 引入echarts的核心包
+  import 'echarts/lib/chart/bar'; // 单独只引入柱状图
+  import 'echarts/lib/component/title';
+
   import { addListener, removeListener } from 'resize-detector';
   import debounce from 'lodash/debounce';
 

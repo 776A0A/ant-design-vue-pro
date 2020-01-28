@@ -13,6 +13,7 @@
 
   // antd 的一些组件依赖了moment库，而moment内部也是有国际化设置功能的，所以在此引入
   import moment from 'moment';
+  import 'moment/locale/zh-cn'; // 引入中文包，英文包是默认的，不需要引入
 
   export default {
     data() {
