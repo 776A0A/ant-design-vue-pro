@@ -16,6 +16,7 @@ const actions = {
     });
 
     commit('saveStepFormData', payload);
+
     router.push('result');
   },
 };

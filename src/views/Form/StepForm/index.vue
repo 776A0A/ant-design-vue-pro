@@ -1,6 +1,5 @@
 <template>
   <div>
-    表单步骤
     <router-view />
   </div>
 </template>
