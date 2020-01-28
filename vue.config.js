@@ -2,6 +2,14 @@ module.exports = {
   css: {
     loaderOptions: {
       less: {
+        /**
+         * 自定义主题，这样可以覆盖掉antd本来的less变量
+         * 另外，这是全局的
+         * 如果想要单独的在某个组件中更改less变量，那么可以使用 >>> 深度选择器来覆盖原来的样式
+         */
+        modifyVars: {
+          'primary-color': '#1DA57A',
+        },
         javascriptEnabled: true,
       },
     },

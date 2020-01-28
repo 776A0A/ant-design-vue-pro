@@ -85,6 +85,7 @@
     text-align: center;
     overflow: hidden;
   }
+  /* 深度选择器，检索vue样式穿透 */
   .nav-theme-dark >>> .logo {
     color: #fff;
   }
