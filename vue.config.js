@@ -9,12 +9,17 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8081', // 注意这个地址，是需要和打开的端口号相同的
+        target: 'http://localhost:8080', // 注意这个地址，是需要和打开的端口号相同的
         bypass: function(req, res) {
           if (req.headers.accept.indexOf('html') !== -1) {
             console.log('Skipping proxy for browser request.');
             return '/index.html';
-          } else {
+          }
+          // 在package.json中配置添加命令："serve:no-mock": "cross-env MOCK=none vue-cli-service serve"
+          // 在windows环境中需要安装cross-env
+          // 这样做是为了在前端自己mock数据和当有真实接口后可以进行切换
+          // 这样，在启动本地服务器时使用：npm run serve:no-mock，就不会走一条逻辑
+          else if (process.env.MOCK !== 'none') {
             // 取得 mock 数据的文件名称，拼接好后是例如 dashboard_chart 等
             const name = req.path
               .split('/api/')[1]
