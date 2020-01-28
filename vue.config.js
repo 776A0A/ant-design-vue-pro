@@ -41,4 +41,17 @@ module.exports = {
       },
     },
   },
+  chainWebpack: config => {
+    // 在vue-cli中引入svg，默认会转换为一个url，可以直接在img中使用
+    // 这里，将其替换为转换为组件的形式来使用
+    const svgRule = config.module.rule('svg');
+
+    // 清除已有的所有 loader。
+    // 如果你不这样做，接下来的 loader 会附加在该规则现有的 loader 之后。
+    svgRule.uses.clear();
+
+    // 添加要替换的 loader
+    // 这样，在组件中引入的svg文件就可以用组件的形式使用
+    svgRule.use('vue-svg-loader').loader('vue-svg-loader');
+  },
 };

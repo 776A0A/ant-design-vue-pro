@@ -1,9 +1,12 @@
 <template>
-  <div>404</div>
+  <div>
+    <Logo />
+  </div>
 </template>
 <script>
+  import Logo from '@/assets/logo.svg';
   export default {
-    // name: "404"
+    components: { Logo },
   };
 </script>
 <style scoped></style>
