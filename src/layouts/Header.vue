@@ -26,6 +26,8 @@
 
         // push里面只有query就只会更新query值
         this.$router.push({ query: { ...this.$route.query, locale: key } });
+
+        this.$i18n.locale = key; // 配合插件和自己配置的语言包一起使用
       },
     },
   };

@@ -1,5 +1,7 @@
 <template>
   <div>
+    <!-- 这里是配合i18n以及自己配置的语言包来用的 -->
+    {{ $t('message')['app.dashboard.analysis.timeLabel'] }}：
     <a-date-picker></a-date-picker>
     <Chart :option="chartOption" style="height: 400px;" />
   </div>
@@ -9,7 +11,6 @@
 
   // import random from 'lodash/random';
 
-  // import axios from 'axios';
   import request from '../../utils/request';
 
   export default {
