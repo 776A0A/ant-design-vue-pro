@@ -1,6 +1,9 @@
+const currentAuth = ['admin'];
+export { currentAuth };
+
 // 获取当前权限
 export function getCurrentAuthority() {
-  return ['admin'];
+  return currentAuth;
 }
 // 传入的权限是将要到达的路由所要求的权限
 // 如果当前的角色没有包含在传入的权限内，说明不符合权限
