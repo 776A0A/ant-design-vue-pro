@@ -4,10 +4,17 @@
     {{ $t('message')['app.dashboard.analysis.timeLabel'] }}：
     <a-date-picker></a-date-picker>
     <Chart :option="chartOption" style="height: 400px;" />
+    <!-- 使用vue-highlightjs -->
+    <pre v-highlightjs="chartCode"><code class="html"></code></pre>
   </div>
 </template>
 <script>
   import Chart from '../../components/Chart';
+
+  // 在网页中引入展示源码并高亮
+  // 通过安装raw-loader就可以通过以下方式引入源码
+  import chartCode from '!!raw-loader!../../components/Chart';
+  import 'highlight.js/styles/ocean.css'; // 引入highlight.js的样式文件
 
   // import random from 'lodash/random';
 
@@ -19,6 +26,7 @@
     data() {
       return {
         chartOption: {},
+        chartCode,
       };
     },
     mounted() {

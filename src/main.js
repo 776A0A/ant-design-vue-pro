@@ -26,6 +26,10 @@ const i18n = new VueI18n({
   },
 });
 
+// 代码高亮指令
+import VueHighlightJS from 'vue-highlightjs';
+Vue.use(VueHighlightJS);
+
 import {
   Button,
   Layout,

@@ -1,4 +1,6 @@
 const path = require('path');
+// eslint-disable-next-line no-unused-vars
+const webpack = require('webpack');
 
 module.exports = {
   css: {
@@ -70,6 +72,7 @@ module.exports = {
         // Ignore all locale files of moment.js
         // 忽略掉所有moment里面的语言包，然后在需要的地方手动引入需要的语言包
         // QUE 不知道为什么会报错
+        // 参考：https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
       ],
       alias: {
         // 配置图标的按需加载，参考：https://github.com/HeskeyBaozi/reduce-antd-icons-bundle-demo
